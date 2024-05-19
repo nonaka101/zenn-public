@@ -1,3 +1,7 @@
-# Zenn CLI
+# 本リポジトリについて
 
-* [📘 How to use](https://zenn.dev/zenn/articles/zenn-cli-guide)
+こちらでは、[Zenn](https://zenn.dev/) で公開している 記事や本を管理しています。
+
+## ライセンスについて
+
+[LICENSE.md](./LICENSE.md) を参照ください。

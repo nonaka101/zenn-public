@@ -1,0 +1,108 @@
+title: "WordPress テーマ作成 初学備忘録"
+summary: |-
+  本書は、初心者が WordPress のテーマ作成を行った際の備忘録です。
+  書籍や資料片手に作成した内容を整理し公開することで、当時の自分の考えを残そうという意図があります。
+  また私のような初心者（下記）の方へ、学ぶ時の参考になればとも考えています。
+
+  1. HTML, CSS, Javascript を学んでいる方
+  　本書は HTML, CSS, Javascript で静的サイトを作成するところからスタートしています。
+
+  2. WordPressテーマ作成を学んでいる方
+  　本書は 市販の書籍でもよく使われている流れ（ HTML から WordPress テーマに落とし込む）を踏んでいます。
+
+  3. Webアクセシビリティに興味がある方
+  　本書は、デジタル庁デザインシステム（Ver 1.3.2）をベースに、Webアクセシビリティを考え取り入れようと試行錯誤した過程を記しています。
+
+  本テーマのリポジトリは、下記のURLです。
+  https://github.com/nonaka101/web-zukuri
+
+  注：本書は初学者の備忘録であり、自身が分かる範囲を噛み砕いて説明したものとなります。そのため情報の精度は下がっていることをご了承ください。
+  注：メモが大量になった関係から、誤字脱字や わかりにくい表現など、至らないところがあると思われます。致命的な誤りは出ないよう努力していますが、もし何かありましたら教えていただければ幸いです。
+
+topics: ["wordpress", "html", "css", "javascript", "アクセシビリティ"]
+published: true
+price: 0 # 有料の場合200〜5000
+toc_depth: 3 # チャプター内の目次で表示する深さ
+# 本に含めるチャプターを順番に並べましょう
+# ページ分けする際は、最初４桁の番号は同じものを使用する。単元名の後ろにハイフン＋連番表記にすることで並びを制御
+chapters:
+  # 目次
+  - _000-index
+  # 第１章：総則
+  - a000-index
+  - a001-introduction
+  - a002-about-theme
+  - a003-howto-install-theme
+  - a004-license
+  - a005-references
+  # a100:Webアクセシビリティ
+  - a100-index-web-accessibility
+  - a101-about-web-accessibility
+  - a102-design-for-accessibility
+  - a103-screen-reader
+  # 第２章：HTML, CSS, Javascript
+  - b000-index
+  - b001-structure-1
+  - b001-structure-2
+  # b100:スタイル
+  - b100-index-style
+  - b101-structure
+  - b102-general-rule
+  - b103-precss
+  - b104-color-1
+  - b104-color-2
+  # b200:開発ツール
+  - b200-index-dev-utils
+  - b201-tools
+  - b202-tools-in-html
+  - b203-create-toolbox
+  - b204-colorchange-1
+  - b204-colorchange-2
+  - b205-fontsizechange
+  # b300:基本コンポーネント
+  - b300-index-component
+  - b301-structure
+    # Element Module
+  - b302-el_thumbnail
+  - b303-el_heading
+  - b304-el_link
+  - b305-el_btn
+    # Block Module
+  - b306-bl_tagmenu
+  - b307-bl_postdata
+  - b308-bl_pager
+  - b309-bl_blockskip
+  - b310-bl_accordion
+  - b311-bl_searchform
+  - b312-bl_card-1
+  - b312-bl_card-2
+    # Layout
+  - b313-ly_footer
+  - b314-ly_mainarea-1
+  - b314-ly_mainarea-2
+  - b315-ly_dialog-1
+  - b315-ly_dialog-2
+  - b315-ly_dialog-3
+    # Extra Module
+  - b316-js_pagetop-1
+  - b316-js_pagetop-2
+  - b317-wp_blockcontents
+  # b400:ページ
+  - b400-index-pages
+  - b401-front-1
+  - b401-front-2
+  - b401-front-3
+  - b401-front-4
+  - b401-front-5
+  - b401-front-6
+  - b402-404
+  - b403-page
+  - b404-single
+  - b405-archive
+  - b406-search
+  # 第３章：WordPress
+  - c000-index
+  - c001-wp-theme-from-html
+  - c002-template-tag-and-functions
+  # 付録
+  - z000-index
