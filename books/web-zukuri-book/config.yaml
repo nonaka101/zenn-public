@@ -102,7 +102,7 @@ chapters:
   - b406-search
   # 第３章：WordPress
   - c000-index
-  - c001-wp-theme-from-html
-  - c002-template-tag-and-functions
+  - c001-template-tag-and-functions
+  - c002-wp-theme-from-html
   # 付録
   - z000-index
