@@ -314,6 +314,38 @@ https://developer.wordpress.org/reference/functions/wp_nav_menu/
 |`container_id`|コンテナ要素に指定するID|
 |`items_wrap`|メニューの `ul` 要素のフォーマット（`<ul id="%1$s" class="%2$s">%3$s</ul>`）|
 
+#### F:`get_nav_menu_locations()`
+
+https://developer.wordpress.org/reference/functions/get_nav_menu_locations/
+
+登録済みのカスタムメニュー（の一覧）を取得する、引数はない。
+
+例：下記のコードは、カスタムメニューを取得し そこからロケーション名を使って ID を抽出するものである。
+
+```php
+$locs = get_nav_menu_locations();
+$menuId = $locs[$args['loc']];
+```
+
+#### F:`wp_get_nav_menu_object()`
+
+https://developer.wordpress.org/reference/functions/wp_get_nav_menu_object/
+
+`wp_get_nav_menu_object( int|string|WP_Term $menu )`
+
+カスタムメニューをオブジェクトとして取得する。なければ `false` を返す。
+
+|引数|内容|要求|
+|:---|:---|---|
+|`int\|string\|WP_Term $menu`|メニューを識別できるID、メニュー名、または WP_Termオブジェクト|必須|
+
+例：下記のコードは、IDからメニューオブジェクトを取得し、その名前（≒管理画面上でつけられたもの）を出力するものである。
+
+```php
+$menu = wp_get_nav_menu_object($menuId);
+echo $menu->name;
+```
+
 ### その他
 
 #### F：`get_month_link()`
