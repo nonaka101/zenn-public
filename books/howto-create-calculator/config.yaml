@@ -1,0 +1,39 @@
+title: "電卓の作り方"
+summary: |-
+  本書は、簡易的な電卓を作成した際のメモを整理したものです。
+  本書で説明する簡易電卓（以降は 電卓 と呼びます）は、下記サイトにて動作を確認することができます。
+
+  https://nonaka101.github.io/jig-a/
+
+
+  本書は大きく分けて「概要」「設計」「作成」「応用」の４つで構成されており、それぞれ下記のような役割を持ちます。
+
+  概要：全体に関する概要です。また参考文献やライセンス等も扱っています。
+  設計：コーディングする前段階として、どのような仕組みになるかを考えていきます。
+  作成：上記の設計を基に、電卓のコア機能をコードとして起こしていきます。
+  応用：コア機能ではない、拡張的な部分の実装を行っていきます。
+
+  ※ コードは JavaScript を使ってますが、設計に関する部分は他の言語でも使えると思います。
+
+topics: ["電卓", "javascript"]
+published: true
+price: 0 # 有料の場合200〜5000
+toc_depth: 3 # チャプター内の目次で表示する深さ
+# 本に含めるチャプターを順番に並べましょう
+chapters:
+  # 概要
+  - a1-about-this-book
+  - a2-basis
+  # 設計
+  - b1-architecture
+  - b2-methods-and-properties
+  - b3-implement-ideas
+  # 作成
+  - c1-state
+  - c2-core-push-expression
+  - c3-method-calculate
+  - c4-method-reset-and-back
+  - c5-is-finite
+  - c9-js-code
+  # 応用
+  - d1-extend-class
