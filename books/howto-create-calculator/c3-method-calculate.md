@@ -152,10 +152,10 @@ function getDecimalPosition(value){
 
 ```javascript
 const multiplication = (x, y) => {
-  const n = 10 ** (getDecimalPosition(x) + getDecimalPosition(y));
-  x = +(x + '').replace('.', '');
-  y = +(y + '').replace('.', '');
-  return (x * y) / n;
+  const z = 10 ** (getDecimalPosition(x) + getDecimalPosition(y));
+  x = x.replace('.', '');
+  y = y.replace('.', '');
+  return (x * y) / z;
 };
 ```
 
@@ -188,18 +188,12 @@ const subtract = (x, y) => {
 
 ##### 割り算
 
-割り算は、掛け算と違い**左辺と右辺の関係**が計算結果の違いをもたらすので、少し複雑です。`0.01 * 200` と `200 * 0.01` は答えが同じ `2` になります。一方、`0.01 / 200` は `0.00005` で、`200 / 0.01` は `20000` と答えが異なります。
+割り算に関しては 両辺を整数化して割ることで、小数のまま計算した場合と同じ結果を導き出せます。
 
 ```javascript
 const division = (x, y) => {
-  const decimalLengthX = getDecimalPosition(x);
-  const decimalLengthY = getDecimalPosition(y);
-  const n = 10 ** (decimalLengthY - decimalLengthX);
-
-  x = +(x + '').replace('.', '');
-  y = +(y + '').replace('.', '');
-
-  return (x / y) * n;
+  const z = 10 ** Math.max(getDecimalPosition(x), getDecimalPosition(y));
+  return multiplication(x, z) / multiplication(y, z);
 }
 ```
 

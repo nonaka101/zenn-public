@@ -58,12 +58,11 @@ function isOperator(char) {
 
 
 const multiplication = (x, y) => {
-  const n = 10 ** (getDecimalPosition(x) + getDecimalPosition(y));
-  x = +(x + '').replace('.', '');
-  y = +(y + '').replace('.', '');
-  return (x * y) / n;
+  const z = 10 ** (getDecimalPosition(x) + getDecimalPosition(y));
+  x = x.replace('.', '');
+  y = y.replace('.', '');
+  return (x * y) / z;
 };
-
 
 const addition = (x, y) => {
   const z = 10 ** Math.max(getDecimalPosition(x), getDecimalPosition(y));
@@ -76,14 +75,8 @@ const subtract = (x, y) => {
 };
 
 const division = (x, y) => {
-  const decimalLengthX = getDecimalPosition(x);
-  const decimalLengthY = getDecimalPosition(y);
-  const n = 10 ** (decimalLengthY - decimalLengthX);
-
-  x = +(x + '').replace('.', '');
-  y = +(y + '').replace('.', '');
-
-  return (x / y) * n;
+  const z = 10 ** Math.max(getDecimalPosition(x), getDecimalPosition(y));
+  return multiplication(x, z) / multiplication(y, z);
 }
 
 
