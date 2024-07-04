@@ -59,8 +59,8 @@ function isOperator(char) {
 
 const multiplication = (x, y) => {
   const z = 10 ** (getDecimalPosition(x) + getDecimalPosition(y));
-  x = x.replace('.', '');
-  y = y.replace('.', '');
+  x = (x + '').replace('.', '');
+  y = (y + '').replace('.', '');
   return (x * y) / z;
 };
 
