@@ -69,7 +69,7 @@ function splitExpression(expression) {
 }
 ```
 
-:::message
+::::message
 
 ループ処理しない方法として `indexOf()` を使った手法があります。ですが本項においては４種類ある演算子の関係上、利便性があまりありません。
 
@@ -100,7 +100,34 @@ function splitExpression(expression) {
 
 計算量的には両者ともに `O(n)` になるようですが、`indexOf()` 手法は必ずヒットしない演算子が2つ以上発生し、固定のオーバーヘッドが生じます。それに対しループ手法は、途中で抜けることを考えると平均的な実行時間は短くなるのではと考えられます。
 
+:::details 追記：正規表現を利用した場合
+
+```javascript
+function splitExpression(expression) {
+  const operatorIndex = expression.match(/^.{1,}?([\+|\-|\*|\/])/gui)[0].length -1;
+
+  const operandLeft = expression.substring(0, operatorIndex);
+  const operator = expression[operatorIndex];
+  const operandRight = expression.substring(operatorIndex + 1);
+  
+  return [operandLeft, operator, operandRight];
+}
+```
+
+正規表現を使って 1行で位置を取得する方法です。
+
+`operatorIndex` は、式 `expression` に対し、「行頭1文字」〜「以降にヒットする演算子記号」を、非貪欲的な形で**ヒットした文字列を配列形式**に取得しています。例えば式が `'-102*-1'` なら、`match()` まで返すのは配列 `["-102*"]` です。  
+（※ `g` フラグを外すと　`["-102*", "*"]`）
+
+上記の配列の `[0]` にあるのは、「1文字目から欲しい演算子記号」までの文字列なので、これ自体の長さにインデックス調整用に 1 を引けば、目的とする数値を取得できます。
+
+`'-102*-1'.match(/^.{1,}?([\+|\-|\*|\/])/gui)[0].length -1` なら、`4` になるというわけです。
+
+置き換えることはできるのですが、後半の単元で `isOperator()` を流用したりしているので、このままにしたいと思います。
+
 :::
+
+::::
 
 ### 計算処理
 
@@ -188,7 +215,7 @@ const subtract = (x, y) => {
 
 ##### 割り算
 
-割り算に関しては 両辺を整数化して割ることで、小数のまま計算した場合と同じ結果を導き出せます。
+割り算に関しては 両辺を整数化して割ることで、小数の場合と同じ結果を導き出せます。
 
 ```javascript
 const division = (x, y) => {

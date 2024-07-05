@@ -37,3 +37,5 @@ chapters:
   - c9-js-code
   # 応用
   - d1-extend-class
+  - d2-prepare-html
+  - d3-htmlcalculator
