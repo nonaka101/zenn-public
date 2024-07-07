@@ -55,7 +55,7 @@ HTML上で表示・操作するクラス `htmlCalculator` を作るのが、こ�
 わざわざコードを打ち込んで操作するのは面倒なので、これをボタンで入力できるようにしたいです。
 
 ![ボタンUIから、Calculatorへ入力操作できるように結びつけている](/images/books/howto-create-calculator/html-calculator-05.png)
-*`Calculator` の `pushExpression()`を拡張子、ボタンUIで入力可能なように改修*
+*`Calculator` の `pushExpression()`を拡張し、ボタンUIで入力可能なように改修*
 
 それとは別に、電卓が保持している状態情報を使えば**入力できない値**がわかります。であれば、事前にそのボタンを操作不能にすることで、ユーザーが誤入力することを防げそうです。
 
