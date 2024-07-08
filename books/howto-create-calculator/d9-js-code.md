@@ -61,7 +61,7 @@ title: "応用⚓：コード全文"
 const b01_calcLabel = document.querySelector('#b01js_label');
 const b01_calcOutput = document.querySelector('#b01js_output');
 
-// 計算ボタン郡（0〜9, 小数点, 四則演算子）
+// 計算ボタン（「式への入力」で使用する 0〜9, 小数点, 四則演算子）
 const b01_calcBtn1 = document.querySelector('#b01js_1');
 const b01_calcBtn2 = document.querySelector('#b01js_2');
 const b01_calcBtn3 = document.querySelector('#b01js_3');
@@ -79,7 +79,7 @@ const b01_calcBtnMultiply = document.querySelector('#b01js_Multiply');
 const b01_calcBtnDevide = document.querySelector('#b01js_Divide');
 const b01_calcBtnEqual = document.querySelector('#b01js_Equal');
 
-// 機能ボタン郡（クリア, バックスペース, コピー, 計算実行）
+// 機能ボタン（クリア, バックスペース）
 const b01_calcBtnAllClear = document.querySelector('#b01js_AllClear');
 const b01_calcBtnBackSpace = document.querySelector('#b01js_BackSpace');
 
@@ -247,7 +247,7 @@ class Calculator {
   }
 
   pushExpression(input) {
-    // 許容されているデータのみ処理に進める（入力としてありえるもの、かつ現ステートで無効な値）
+    // 許容されているデータのみ処理に進める（入力としてありえるもの、かつ現ステートで無効な値でない）
     if ((!VALID_INPUTS.includes(input)) || (INVALID_INPUTS_BY_STATE[this._state].includes(input))) {
       return false;
     }
