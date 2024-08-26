@@ -270,8 +270,8 @@ function isDateFormat(dateString) {
   // 簡易的な月日の妥当性チェック（月の範囲は1〜12か、日の範囲は1〜31か）
   const [year, month, day] = dateString.split('-').map(Number);
   if(
-    (month < 1 || month > 12) ||
-    (day < 1 && day > 31)
+    !(month >= 1 && month <= 12) ||
+    !(day >= 1 && day <= 31)
   ) return false;
 
   // チェックをすべて満たせば、true を返す
@@ -303,8 +303,8 @@ function isDateFormat(dateString) {
   // 簡易的な月日の妥当性チェック（月の範囲は1〜12か、日の範囲は1〜31か）
   const [year, month, day] = dateString.split('-').map(Number);
   if(
-    (month < 1 || month > 12) ||
-    (day < 1 && day > 31)
+    !(month >= 1 && month <= 12) ||
+    !(day >= 1 && day <= 31)
   ) return false;
 
   // date 型による妥当性チェック（入力値が `2/31` といった存在しない日付だったり、閏日により実際の日付とズレてないか）
@@ -495,8 +495,8 @@ function isDateFormat(dateString) {
   // 簡易的な月日の妥当性チェック（月の範囲は1〜12か、日の範囲は1〜31か）
   const [year, month, day] = dateString.split('-').map(Number);
   if(
-    (month < 1 || month > 12) ||
-    (day < 1 && day > 31)
+    !(month >= 1 && month <= 12) ||
+    !(day >= 1 && day <= 31)
   ) return false;
 
   // date 型による妥当性チェック（入力値が `2/31` といった存在しない日付だったり、閏日により実際の日付とズレてないか）
