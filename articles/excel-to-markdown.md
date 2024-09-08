@@ -146,13 +146,13 @@ https://nonaka101.github.io/jig-a/
 
 | 表 | 列A | 列B |
 | --- | --- | --- |
-| 行1 | セル\|A1 | セルB1 |
+| 行1 | セル\\|A1 | セルB1 |
 | 行2 | セルA2 | セルB2 |
 
 ```text:エスケープ処理して正しい形にした上図テーブル
 | 表 | 列A | 列B |
 | --- | --- | --- |
-| 行1 | セル\|A1 | セルB1 |
+| 行1 | セル\\|A1 | セルB1 |
 | 行2 | セルA2 | セルB2 |
 ```
 
@@ -293,7 +293,32 @@ https://nonaka101.github.io/jig-a/
 
 1番で行った無害化処理が含まれている場合には、無害化した文字列を元の意味に戻す処理が必要となります。
 
-ただし、無害化した `|` を そのまま `|` として戻してしまっては、`markdown` に影響が出てしまうので意味がありません。そのため `|` は `\|` にするなどの、エスケープ処理した形での復元でなければなりません。
+ただし、無害化した `|` を そのまま `|` として戻してしまっては、`markdown` に影響が出てしまうので意味がありません。そのため `|` は `\\|` にするなどの、エスケープ処理した形での復元でなければなりません。
+
+::::message
+
+`markdown` でのエスケープ処理のみを考えた場合 `\|` でも問題はありません。しかし本記事と逆のパターン「`markdown` テーブル形式のデータを表形式データに変換する」での事情から、`\|` でなく `\\|` にしています。
+
+これは `markdown` テーブル形式の文字列からエスケープ処理された文字列を抽出する際、`\|` だと上手く処理できなかったためです。
+
+:::details 個人メモ：原因について
+
+`\|` を含むデータを文字列として解釈した際に、**意味のないバックスラッシュとして無視される**ことが原因のようです。
+
+文字列リテラルの中の `\` は、自動的にエスケープシーケンスとして扱われます。その際、`\|` は未定義のエスケープシーケンスと判断され、`\` の部分は無視されてしまうようです。
+
+これを防ぐためには、バックスラッシュそのものを文字として認識させるために、`\\` とエスケープ処理が必要となります。
+
+```javascript:エスケープシーケンス
+console.log('|');     // -> '|'
+console.log('\|');    // -> '|'  : 未定義のエスケープシーケンスとして無視される
+console.log('\\|');   // -> '\|'
+console.log('\\\|');  // -> '\|' : 2つはエスケープシーケンス、残る一つは無視される
+```
+
+:::
+
+::::
 
 ## 作成
 
@@ -558,7 +583,7 @@ function excel2markdownWithEscaped(excelStr) {
     {
       original: '\\|', 
       evacuation: '@@PIPE@@',
-      escaped: '\\|'
+      escaped: '\\\\|'
     },
   ];
 
@@ -579,7 +604,7 @@ function excel2markdownWithEscaped(excelStr) {
 }
 ```
 
-上記コードの場合、`conversionTable` の `original`, `evacuation` は正規表現に、`evacuation`, `escaped` は通常文字列として利用しています。オブジェクトとして格納しているデータの扱いが複雑で、一見すると何故 `original` と `escaped` で同じ `\\|` になるのか、わかりづらい状態です。
+上記コードの場合、`conversionTable` の `original`, `evacuation` は正規表現に、`evacuation`, `escaped` は通常文字列として利用しています。オブジェクトとして格納しているデータの扱いが複雑で、一見すると何故エスケープ処理のない表形式データに対する `original` で `\\|` となるのか、わかりづらい状態です。
 
 :::
 
@@ -603,8 +628,8 @@ console.log(excel2markdownWithEscaped(testWithPipe));
 /* ↓ 出力結果
 | 表 | 列A | 列B |
 | --- | --- | --- |
-| 行1 | セル\|A1 | セル\|B1 |
-| 行2 | セル\|A2 | セルB2 |
+| 行1 | セル\\|A1 | セル\\|B1 |
+| 行2 | セル\\|A2 | セルB2 |
 */
 ```
 
@@ -622,7 +647,7 @@ console.log(excel2markdownWithEscaped(testWithPipe));
 |:---|---|
 |処理対象の文字列 `original`|`\|`|
 |退避用の文字列 `evacuation`|`@@PIPE@@`|
-|処理済み文字列 `escaped`|`\\\|`|
+|処理済み文字列 `escaped`|`\\\\\|`|
 
 今後パターンが増えるかもしれないことを考慮して、この 3 つの情報をオブジェクトとして纏め、配列形式で格納しておきます。
 
@@ -632,7 +657,7 @@ function excel2markdownWithEscaped(excelStr) {
     {
       original: '|', 
       evacuation: '@@PIPE@@',
-      escaped: '\\|'
+      escaped: '\\\\|'  // -> エスケープシーケンスで '\\|'
     },
   ];
 }
@@ -659,7 +684,7 @@ function excel2markdownWithEscaped(excelStr) {
     {
       original: '|', 
       evacuation: '@@PIPE@@',
-      escaped: '\\|'
+      escaped: '\\\\|'
     },
   ];
 
@@ -688,7 +713,7 @@ function excel2markdownWithEscaped(excelStr) {
     {
       original: '|', 
       evacuation: '@@PIPE@@',
-      escaped: '\\|'
+      escaped: '\\\\|'
     },
   ];
 
@@ -711,7 +736,7 @@ console.log(excel2markdownWithEscaped(testWithPipe));
 */
 ```
 
-後は `@@PIPE@@` をエスケープ処理した文字列 `\|` に置き換えれば、関数の返り値が完成します。ここでの置換処理は `evacuation` 文字列を区切りに配列化し、`escaped` 文字列で繋げることで行います。
+後は `@@PIPE@@` をエスケープ処理した文字列 `\\|` に置き換えれば、関数の返り値が完成します。ここでの置換処理は `evacuation` 文字列を区切りに配列化し、`escaped` 文字列で繋げることで行います。
 
 ```javascript:復元化して完成
 function excel2markdownWithEscaped(excelStr) {
@@ -719,7 +744,7 @@ function excel2markdownWithEscaped(excelStr) {
     {
       original: '|', 
       evacuation: '@@PIPE@@',
-      escaped: '\\|'
+      escaped: '\\\\|'
     },
   ];
 
@@ -744,8 +769,8 @@ console.log(excel2markdownWithEscaped(testWithPipe));
 /* ↓ 返り値は、目標としていたデータと一致
 | 表 | 列A | 列B |
 | --- | --- | --- |
-| 行1 | セル\|A1 | セル\|B1 |
-| 行2 | セル\|A2 | セルB2 |
+| 行1 | セル\\|A1 | セル\\|B1 |
+| 行2 | セル\\|A2 | セルB2 |
 */
 ```
 
@@ -782,7 +807,7 @@ function excel2markdownWithEscaped(excelStr) {
     {
       original: '|', 
       evacuation: '@@PIPE@@',
-      escaped: '\\|'
+      escaped: '\\\\|'
     },
   ];
 
@@ -816,8 +841,8 @@ console.log(excel2markdownWithEscaped(testWithPipe));
 /* ↓ 出力結果
 | 表 | 列A | 列B |
 | --- | --- | --- |
-| 行1 | セル\|A1 | セル\|B1 |
-| 行2 | セル\|A2 | セルB2 |
+| 行1 | セル\\|A1 | セル\\|B1 |
+| 行2 | セル\\|A2 | セルB2 |
 */
 ```
 
