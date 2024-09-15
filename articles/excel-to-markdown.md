@@ -16,6 +16,15 @@ published: true # 公開設定（falseにすると下書き）
 
 [クリップボードについての話](#クリップボードについて)は、最下段に補足として乗せておきます。
 
+:::message alert
+
+本記事の逆パターン [markdown から表形式データに変換](https://zenn.dev/nonaka101/articles/markdown-to-excel) の関係で、エスケープシーケンスの扱いが少し複雑になっています。あちらの処理では、**文字列リテラル**で処理する場合と**生の文字列**で処理する場合で、結果が異なってくるのが原因です。
+
+本記事では 向こうに合わせる形で、**文字列リテラル**を使った処理を中心に説明が進みます。向こう側で `form` 要素や `String.raw` で**生の文字列**を使える場合は、[実際に使用する際の注意事項](#実際に使用する際の注意事項)の項目に その場合のコード等を置いていますのでご参照ください。  
+（※ エスケープ処理を調整するだけなので、設計や作成等の基本的な流れは一緒になります）
+
+:::
+
 ### その他紹介
 
 本記事と逆のパターンも用意していますので、興味がある方は下記記事を参照してください。
@@ -844,13 +853,52 @@ console.log(excel2markdownWithEscaped(testWithPipe));
 
 ### 実際に使用する際の注意事項
 
-本記事では[設計](#設計)で説明したように、上手く処理できないという理由から `\\|` という形でのエスケープしています。
+本記事では、逆パターン [markdown から表形式データに変換](https://zenn.dev/nonaka101/articles/markdown-to-excel) が上手く処理できないという理由から `\\|` という形でのエスケープしています。
 
 ですが**実際に使用する際には** `\|` **で処理できるケースがあります**。例として、[私が作成している簡易ツール集](https://nonaka101.github.io/jig-a/) では `textarea` 要素を使って入力を受け付けており、`\|` の形で処理できています。
 
-これはスクリプト上で用意した文字列リテラルでは**自動的にエスケープ処理される**のに対し、`textarea` 等に入力されたデータは**生の文字列**として受け入れているためです。
+これはスクリプト上で用意した**文字列リテラルでは自動的にエスケープ処理される**のに対し、`textarea` 等に**入力されたデータは生の文字列**として受け入れているためです。
 
-このような挙動の違いがあるため、実際に利用する際にはエスケープ処理の扱いに注意が必要となってきます。
+このような挙動の違いがあるため、実際に利用する際にはエスケープ処理の扱いに注意が必要となってきます。下記は生の文字列が使える場合のパターンで、`\|` でエスケープするようになっています。
+
+:::details 生の文字列で処理する場合の関数
+
+```javascript:生の文字列用の関数
+function excel2markdownWithEscaped(excelStr) {
+  const conversionTable = [
+    {
+      original: '|',
+      evacuation: '@@PIPE@@',
+      escaped: '\\|'
+    },
+  ];
+
+  // 退避用文字列に置換
+  conversionTable.forEach(replacement => {
+    excelStr = excelStr.split(replacement.original).join(replacement.evacuation);
+  });
+
+  // ベース処理
+  excelStr = excel2markdown(excelStr);
+
+  // 退避させてた文字列をエスケープ処理付きで復元
+  conversionTable.forEach(replacement => {
+    excelStr = excelStr.split(replacement.evacuation).join(replacement.escaped);
+  });
+
+  return excelStr;
+}
+
+const testWithPipe = '表\t列A\t列B\n行1\tセル|A1\tセル|B1\n行2\tセル|A2\tセルB2';
+console.log(excel2markdownWithEscaped(testWithPipe));
+// ↓ 出力結果
+// | 表 | 列A | 列B |
+// | --- | --- | --- |
+// | 行1 | セル\|A1 | セル\|B1 |
+// | 行2 | セル\|A2 | セルB2 |
+```
+
+:::
 
 ### クリップボードについて
 

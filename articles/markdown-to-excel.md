@@ -16,6 +16,17 @@ published: true # 公開設定（falseにすると下書き）
 
 [クリップボードについての話](#クリップボードについて)は、最下段に補足として乗せておきます。
 
+:::message alert
+
+本記事はエスケープシーケンスを想定した部分があり、扱いが少し複雑になっています。
+
+**文字列リテラル**で処理する場合と**生の文字列**で処理する場合で、結果が異なってきます。
+
+本記事では**文字列リテラル**を使った処理を中心に説明が進みます。`form` 要素や `String.raw` で**生の文字列**を使える場合は、[実際に使用する際の注意事項](#実際に使用する際の注意事項)の項目に その場合のコード等を置いていますのでご参照ください。  
+（※ エスケープ処理を調整するだけなので、設計や作成等の基本的な流れは一緒になります）
+
+:::
+
 ### その他紹介
 
 本記事と逆のパターンも用意していますので、興味がある方は下記記事を参照してください。
@@ -618,7 +629,7 @@ function markdown2excelWithEscaped(mdTable) {
 }
 
 // テスト
-const mdTable = '| 表 | 列A | 列B |\n| :---: | :--- | ---: |\n| 行1 | セル\\|A1 | セル\\|B1 |\n| 行2 | セル\\|A2 | セルB2 |';
+const mdTable2 = '| 表 | 列A | 列B |\n| :---: | :--- | ---: |\n| 行1 | セル\\|A1 | セル\\|B1 |\n| 行2 | セル\\|A2 | セルB2 |';
 console.log(markdown2excelWithEscaped(mdTable2));
 /* ↓ 出力結果
 表	列A	列B
@@ -722,7 +733,7 @@ function markdown2excelWithEscaped(mdTable) {
 }
 
 // テスト
-const mdTable = '| 表 | 列A | 列B |\n| :---: | :--- | ---: |\n| 行1 | セル\\|A1 | セル\\|B1 |\n| 行2 | セル\\|A2 | セルB2 |';
+const mdTable2 = '| 表 | 列A | 列B |\n| :---: | :--- | ---: |\n| 行1 | セル\\|A1 | セル\\|B1 |\n| 行2 | セル\\|A2 | セルB2 |';
 console.log(markdown2excelWithEscaped(mdTable2));
 /* ↓ この段階だと、下記のようになる
 | 表 | 列A | 列B |
@@ -756,7 +767,7 @@ function markdown2excelWithEscaped(mdTable) {
 }
 
 // テスト
-const mdTable = '| 表 | 列A | 列B |\n| :---: | :--- | ---: |\n| 行1 | セル\\|A1 | セル\\|B1 |\n| 行2 | セル\\|A2 | セルB2 |';
+const mdTable2 = '| 表 | 列A | 列B |\n| :---: | :--- | ---: |\n| 行1 | セル\\|A1 | セル\\|B1 |\n| 行2 | セル\\|A2 | セルB2 |';
 console.log(markdown2excelWithEscaped(mdTable2));
 /* ↓ この段階だと、下記のようになる
 表	列A	列B
@@ -794,7 +805,7 @@ function markdown2excelWithEscaped(mdTable) {
 }
 
 // テスト
-const mdTable = '| 表 | 列A | 列B |\n| :---: | :--- | ---: |\n| 行1 | セル\\|A1 | セル\\|B1 |\n| 行2 | セル\\|A2 | セルB2 |';
+const mdTable2 = '| 表 | 列A | 列B |\n| :---: | :--- | ---: |\n| 行1 | セル\\|A1 | セル\\|B1 |\n| 行2 | セル\\|A2 | セルB2 |';
 console.log(markdown2excelWithEscaped(mdTable2));
 /* ↓ 返り値は、目標としていたデータと一致
 表	列A	列B
@@ -881,9 +892,67 @@ console.log(markdown2excelWithEscaped(mdTable2));
 
 ですが**実際に使用する際には** `\|` **で処理できるケースがあります**。例として、[私が作成している簡易ツール集](https://nonaka101.github.io/jig-a/) では `textarea` 要素を使って入力を受け付けており、`\|` の形で処理できています。
 
-これはスクリプト上で用意した文字列リテラルでは**自動的にエスケープ処理される**のに対し、`textarea` 等に入力されたデータは**生の文字列**として受け入れているためです。
+これはスクリプト上で用意した文字列リテラルでは**自動的にエスケープ処理される**のに対し、`textarea` 等に入力されたデータは**生の文字列**として受け入れているためです。  
+（別解として `String.raw` を使えば、エスケープ処理されない生の文字列を扱えます）
 
-このような挙動の違いがあるため、実際に利用する際にはエスケープ処理の扱いに注意が必要となってきます。
+このような挙動の違いがあるため、実際に利用する際にはエスケープ処理の扱いに注意が必要となってきます。下記は生の文字列が使える場合のパターンで、`\|` でエスケープするようになっています。
+
+:::details 生の文字列で処理する場合の関数
+
+```javascript:生の文字列用の関数
+function markdown2excelWithEscaped(mdTable) {
+  const conversionTable = [
+    {
+      original: '|',
+      evacuation: '@@PIPE@@',
+      escaped: '\\|'
+    },
+  ];
+
+  // 退避用文字列に置換
+  conversionTable.forEach(replacement => {
+    mdTable = mdTable.split(replacement.escaped).join(replacement.evacuation);
+  });
+
+  // ベース処理
+  mdTable = markdown2excel(mdTable);
+
+  // 退避させてた文字列をエスケープ処理付きで復元
+  conversionTable.forEach(replacement => {
+    mdTable = mdTable.split(replacement.evacuation).join(replacement.original);
+  });
+
+  return mdTable;
+}
+
+const mdTable1 = '| 表 | 列A | 列B |\n| --- | --- | --- |\n| 行1 | セルA1 | セルB1 |\n| 行2 | セルA2 | セルB2 |';
+
+// 揃え方向を指定したパターン
+// const mdTable1 = '| 表 | 列A | 列B |\n| :---: | :--- | ---: |\n| 行1 | セルA1 | セルB1 |\n| 行2 | セルA2 | セルB2 |';
+
+// スペースやハイフンで見栄えを調整したパターン
+// const mdTable1 = '|  表 | 列A    | 列B   |\n| --- | ----- | ----- |\n| 行1 | セルA1 | セルB1 |\n| 行2 | セルA2 | セルB2 |';
+
+console.log(markdown2excel(mdTable1));
+// ↓ 出力結果
+// 表	列A	列B
+// 行1	セルA1	セルB1
+// 行2	セルA2	セルB2
+
+// エスケープシーケンスを生の文字列として使った検証データ
+const mdTable2 = String.raw`| 表 | 列A | 列B |
+| :---: | :--- | ---: |
+| 行1 | セル\|A1 | セル\|B1 |
+| 行2 | セル\|A2 | セルB2 |`;
+
+console.log(markdown2excelWithEscaped(mdTable2));
+// ↓ 出力結果
+// 表	列A	列B
+// 行1	セル|A1	セル|B1
+// 行2	セル|A2	セルB2
+```
+
+:::
 
 ### クリップボードについて
 
