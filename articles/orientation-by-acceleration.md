@@ -136,8 +136,8 @@ float angleBetweenTwoVectors(int vecX1, int vecY1, int vecZ1, int vecX2, int vec
   float magnitudeV1 = sqrt(pow(vecX1, 2) + pow(vecY1, 2) + pow(vecZ1, 2));
   float magnitudeV2 = sqrt(pow(vecX2, 2) + pow(vecY2, 2) + pow(vecZ2, 2));
 
-  // 問題なければ cosθを算出（いずれかが 0 の場合は NaN を返す）
-  if (dotProduct == 0 || magnitudeV1 == 0 || magnitudeV2 ==0) return NAN;
+  // 問題なければ cosθを算出（内積が 0 の場合、cosθ が 0 となり90°となる）
+  if (dotProduct == 0) return 90.0;
   float cosTheta = dotProduct / (magnitudeV1 * magnitudeV2);
 
   // acos 計算用に、cosTheta の範囲を制限 (-1 <= cosTheta <= 1)
