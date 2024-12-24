@@ -160,6 +160,14 @@ The `JAVA PROJECTS` view allows you to manage your dependencies. More details ca
 
 [JDK未インストール時の挙動](#jdk未インストール時の挙動)の項目でJDKが必要なことが確認できたので、ここで JDK をインストールしていきます。[拡張機能のインストール](#拡張機能のインストール)の項目にあった方法でなく、ここでは `apt` 経由でのインストールを行います。
 
+:::message
+
+2024/12/24 追記：`apt` 経由以外での方法について
+
+`openjdk-17` 系では `switch` 式など一部の機能が使えなかったので、手軽に導入できる目的に沿う形での[別解](#jdkインストールの別解)を記事最後に追記しました。
+
+:::
+
 #### ターミナル上での確認
 
 ターミナルを起動し、`java` 及び コンパイラ `javac` が存在しているかを確認してみます。
@@ -325,6 +333,25 @@ java       javap    jdb       jfr        jinfo   jmod   jrunscript  jstat   rmir
 ここまでの手順の中で、VSCode のエクスプローラー欄に **JAVA PROJECTS** のペインも登録されていることが確認できると思います。物理的なディレクトリ構造を管理しているエクスプローラーと違い、こちらのペインは下図に示されるように、Java プロジェクトに沿った形の管理が可能となります。
 
 ![Java Projectペイン、ソースコードやライブラリ等の観点から管理できる](/images/articles/setup-java-on-chromebook/setup-10.png)
+
+### JDKインストールの別解
+
+拡張子 `deb` であれば、「Linux でのインストール」を使って自動的にインストールすることができます。手軽に導入したいけど、[default-jdkのインストール](#default-jdkのインストール)だとバージョンが古くて不都合がある場合などに、こちらを考慮に入れてみると良いかもしれません。
+
+![deb形式のJDKをダウンロードし、右クリックして「Linuxでのインストール」を選択している状態](/images/articles/setup-java-on-chromebook/setup-11.png)
+
+例えば上図は [Amazon Corretto](https://aws.amazon.com/jp/corretto/) を使っています。これは [AWS](https://aws.amazon.com/jp/?nc2=h_lg) が提供している、**本番環境に対応した 無料の OpenJDK ディストリビューション**です。ダウンロード一覧の中に `deb` 形式がありますので、こちらを使えば自動でインストールすることができます。
+
+ここから先に関しては、[`setting.json` へのパスを通す](#再度ターミナル上での確認)工程と同じ手順で進めていけば環境構築を行えます。
+
+```bash:登録の確認
+username@penguin:~$ java --version
+openjdk 21.0.5 2024-10-15 LTS
+OpenJDK Runtime Environment Corretto-21.0.5.11.1 (build 21.0.5+11-LTS)
+OpenJDK 64-Bit Server VM Corretto-21.0.5.11.1 (build 21.0.5+11-LTS, mixed mode, sharing)
+username@penguin:~$ javac --version
+javac 21.0.5
+```
 
 ### 参考文献
 
