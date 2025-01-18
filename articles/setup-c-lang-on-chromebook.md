@@ -184,7 +184,7 @@ C 言語での開発にはコンパイラが必要であることが確認でき
 username@penguin:~$ sudo apt install build-essential gdb
 ```
 
-`gbd`（GNU Debugger）は C/C++ 用のソースコードのデバッガーです。`build-essential` は開発に必要となる諸ツールがまとまったもので、例えば下表のパッケージが含まれています。
+`gdb`（GNU Debugger）は C/C++ 用のソースコードのデバッガーです。`build-essential` は開発に必要となる諸ツールがまとまったもので、例えば下表のパッケージが含まれています。
 
 |パッケージ名|説明|
 |:---|:---|
