@@ -14,6 +14,12 @@ published: true # 公開設定（falseにすると下書き）
 
 https://nonaka101.github.io/jig-a/
 
+### 追記
+
+2025年1月に、他言語版の記事を作成しました。よろしかったら御覧ください。
+
+https://zenn.dev/nonaka101/articles/exercise_in_language__calculate_age
+
 ## 事前準備
 
 ここでは設計を始める前段階として、目的や条件等を考えていきます。
