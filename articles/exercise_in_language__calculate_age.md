@@ -607,7 +607,7 @@ function calcAge(DateTime $dateBirth, DateTime $dateBase = null): int {
   $dateBase = $dateBase ?? new DateTime();
 
   // 型チェック
-  if (!($dateBirth instanceof DateTime) || !($dateBase instanceof DateTime)) {
+  if (!($dateBirth instanceof DateTime && $dateBase instanceof DateTime)) {
     throw new InvalidArgumentException('引数は DateTime 型でなければなりません');
   }
 
@@ -766,7 +766,7 @@ def calc_age(date_birth: date, date_base: date = date.today()) -> int:
   """
 
   # 型チェック
-  if (not isinstance(date_birth, date)) or (not isinstance(date_base, date)):
+  if not (isinstance(date_birth, date) and isinstance(date_base, date)):
     raise ValueError("引数は date 型で指定してください")
 
   # 年齢計算
@@ -1280,7 +1280,7 @@ int main(){
 
 他言語と違い、ここでは挙動の流れを変えています。
 
-他の言語では、条件を満たしていない時点で `return false;` といった形で関数を抜けるようにしていま。一方の C 言語では どのケースでもブロック最後まで行くようになっています。これは正規表現用に確保したメモリ領域を `regfree()` で解放する必要があるためです。
+他の言語では、条件を満たしていない時点で `return false;` といった形で関数を抜けるようにしていました。一方、C 言語では どのケースでもブロック最後まで行くようになっています。これは正規表現用に確保したメモリ領域を `regfree()` で解放する必要があるためです。
 
 ### 満年齢と経過日数の算出（C言語）
 
@@ -1629,7 +1629,7 @@ function calcAge(DateTime $dateBirth, DateTime $dateBase = null): int {
   $dateBase = $dateBase ?? new DateTime();
 
   // 型チェック
-  if (!($dateBirth instanceof DateTime) || !($dateBase instanceof DateTime)) {
+  if (!($dateBirth instanceof DateTime && $dateBase instanceof DateTime)) {
     throw new InvalidArgumentException('引数は DateTime 型でなければなりません');
   }
 
@@ -1742,7 +1742,7 @@ def calc_age(date_birth: date, date_base: date = date.today()) -> int:
     ValueError: 引数が datetime 型でない場合
   """
   # 型チェック
-  if (not isinstance(date_birth, date)) or (not isinstance(date_base, date)):
+  if not (isinstance(date_birth, date) and isinstance(date_base, date)):
     raise ValueError("引数は date 型で指定してください")
 
   # 年齢計算
