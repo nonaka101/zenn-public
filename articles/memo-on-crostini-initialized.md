@@ -50,8 +50,9 @@ published: true # 公開設定（falseにすると下書き）
 - プロンプト文の設定
 - オプション設定
 - 環境変数
+- `apt` インストール済み一覧
 
-:::details 各種内容（長いので格納しています）
+::::details 各種内容（長いので格納しています）
 
 ```bash:OS情報
 username@penguin:~$ uname -a
@@ -248,7 +249,125 @@ declare -x XDG_SESSION_TYPE="wayland"
 
 ※ `■■■` と記載されている箇所は、一意の文字列を表します
 
+:::details aptインストール済み一覧（長いため格納しています）
+
+下記は `apt list --installed` を使い、インストール済みのものを一覧化したものです（量が膨大なためバージョン等の情報は削っています）
+
+```txt
+adduser, adwaita-icon-theme, alsa-topology-conf, alsa-ucm-conf, appstream, 
+apt-utils, apt, at-spi2-common, at-spi2-core, base-files, base-passwd, 
+bash-completion, bash, bsdextrautils, bsdutils, bzip2, ca-certificates, 
+coreutils, cpio, cpp-12, cpp, cros-adapta, cros-apt-config, cros-garcon, 
+cros-guest-tools, cros-host-fonts, cros-im, cros-logging, cros-motd, 
+cros-notificationd, cros-pipe-config, cros-sommelier-config, cros-sommelier, 
+cros-sudo-config, cros-systemd-overrides, cros-ui-config, cros-vmstat-metrics, 
+cros-wayland, curl, dash, dbus-bin, dbus-daemon, dbus-session-bus-common, 
+dbus-system-bus-common, dbus-user-session, dbus-x11, dbus, dconf-cli, 
+dconf-gsettings-backend, dconf-service, debconf, debian-archive-keyring, 
+debianutils, desktop-file-utils, diffutils, dirmngr, dmsetup, dpkg, e2fsprogs, 
+file, findutils, fontconfig-config, fontconfig, fonts-dejavu-core, fuse3, 
+gcc-12-base, git-man, git, gnupg-l10n, gnupg-utils, gnupg, gpg-agent, 
+gpg-wks-client, gpg-wks-server, gpg, gpgconf, gpgsm, gpgv, grep, groff-base, 
+gsettings-desktop-schemas, gtk-update-icon-cache, gtk2-engines-murrine, 
+gtk2-engines-pixbuf, gzip, hicolor-icon-theme, hostname, ifupdown, 
+init-system-helpers, init, iproute2, iptables, iputils-ping, isc-dhcp-client, 
+isc-dhcp-common, iso-codes, krb5-locales, less, libacl1, libapparmor1, 
+libappstream4, libapt-pkg6.0, libargon2-1, libasound2-data, libasound2, 
+libassuan0, libasyncns0, libatk-bridge2.0-0, libatk1.0-0, libatm1, 
+libatspi2.0-0, libattr1, libaudit-common, libaudit1, libauthen-sasl-perl, 
+libavahi-client3, libavahi-common-data, libavahi-common3, libblkid1, libbpf1, 
+libbrotli1, libbsd0, libbz2-1.0, libc-bin, libc-l10n, libc6, 
+libcairo-gobject2, libcairo-script-interpreter2, libcairo2, libcap-ng0, 
+libcap2-bin, libcap2, libcbor0.8, libclone-perl, libcloudproviders0, 
+libcolord2, libcom-err2, libcrypt1, libcryptsetup12, libcups2, 
+libcurl3-gnutls, libcurl4, libdata-dump-perl, libdatrie1, libdb5.3, 
+libdbus-1-3, libdconf1, libdebconfclient0, libdeflate0, libdevmapper1.02.1, 
+libdouble-conversion3, libdrm-amdgpu1, libdrm-common, libdrm-intel1, 
+libdrm-nouveau2, libdrm-radeon1, libdrm2, libduktape207, libdw1, libedit2, 
+libegl-mesa0, libegl1, libelf1, libencode-locale-perl, libepoxy0, 
+liberror-perl, libevdev2, libexpat1, libext2fs2, libfdisk1, libffi8, 
+libfido2-1, libfile-basedir-perl, libfile-desktopentry-perl, 
+libfile-find-rule-perl, libfile-listing-perl, libfile-mimeinfo-perl, 
+libflac12, libfont-afm-perl, libfontconfig1, libfontenc1, libfreetype6, 
+libfribidi0, libfuse3-3, libgail-common, libgail18, libgbm1, libgcc-s1, 
+libgcrypt20, libgdbm-compat4, libgdbm6, libgdk-pixbuf-2.0-0, 
+libgdk-pixbuf2.0-bin, libgdk-pixbuf2.0-common, libgl1-mesa-dri, libgl1, 
+libglapi-mesa, libglib2.0-0, libglib2.0-bin, libglib2.0-data, libglvnd0, 
+libglx-mesa0, libglx0, libgmp10, libgnutls30, libgpg-error0, libgpm2, 
+libgraphene-1.0-0, libgraphite2-3, libgssapi-krb5-2, libgstreamer1.0-0, 
+libgtk-3-0, libgtk-3-bin, libgtk-3-common, libgtk-4-1, libgtk-4-bin, 
+libgtk-4-common, libgtk2.0-0, libgtk2.0-bin, libgtk2.0-common, libgudev-1.0-0, 
+libharfbuzz0b, libhogweed6, libhtml-form-perl, libhtml-format-perl, 
+libhtml-parser-perl, libhtml-tagset-perl, libhtml-tree-perl, 
+libhttp-cookies-perl, libhttp-daemon-perl, libhttp-date-perl, 
+libhttp-message-perl, libhttp-negotiate-perl, libice6, libicu72, libidn2-0, 
+libinput-bin, libinput10, libio-html-perl, libio-socket-ssl-perl, 
+libio-stringy-perl, libip4tc2, libip6tc2, libipc-system-simple-perl, libisl23, 
+libjansson4, libjbig0, libjpeg62-turbo, libjson-c5, libk5crypto3, 
+libkeyutils1, libkmod2, libkrb5-3, libkrb5support0, libksba8, liblcms2-2, 
+libldap-2.5-0, libldap-common, liblerc4, liblilv-0-0, libllvm15, liblua5.3-0, 
+liblwp-mediatypes-perl, liblwp-protocol-https-perl, liblz4-1, liblzma5, 
+liblzo2-2, libmagic-mgc, libmagic1, libmailtools-perl, libmd0, libmd4c0, 
+libmnl0, libmount1, libmp3lame0, libmpc3, libmpfr6, libmpg123-0, libmtdev1, 
+libncursesw6, libnet-dbus-perl, libnet-http-perl, libnet-smtp-ssl-perl, 
+libnet-ssleay-perl, libnetfilter-conntrack3, libnettle8, libnewt0.52, 
+libnfnetlink0, libnftables1, libnftnl11, libnghttp2-14, libnpth0, libnsl2, 
+libnss-systemd, libnumber-compare-perl, libogg0, libopus0, libp11-kit0, 
+libpackagekit-glib2-18, libpam-cap, libpam-modules-bin, libpam-modules, 
+libpam-runtime, libpam-systemd, libpam0g, libpango-1.0-0, libpangocairo-1.0-0, 
+libpangoft2-1.0-0, libpciaccess0, libpcre2-16-0, libpcre2-8-0, libperl5.36, 
+libpipeline1, libpipewire-0.3-0, libpipewire-0.3-common, 
+libpipewire-0.3-modules, libpixman-1-0, libpng16-16, libpolkit-agent-1-0, 
+libpolkit-gobject-1-0, libpopt0, libproc2-0, libpsl5, libpulse0, 
+libpython3-stdlib, libpython3.11-minimal, libpython3.11-stdlib, libqt5core5a, 
+libqt5dbus5, libqt5gui5, libqt5network5, libqt5qml5, libqt5qmlmodels5, 
+libqt5quick5, libqt5svg5, libqt5waylandclient5, libqt5waylandcompositor5, 
+libqt5widgets5, libreadline8, libregexp-ipv6-perl, librsvg2-2, 
+librsvg2-common, librtmp1, libsasl2-2, libsasl2-modules-db, libsasl2-modules, 
+libseccomp2, libselinux1, libsemanage-common, libsemanage2, libsensors-config, 
+libsensors5, libsepol2, libserd-0-0, libslang2, libsm6, libsmartcols1, 
+libsndfile1, libsodium23, libsord-0-0, libspa-0.2-modules, libsqlite3-0, 
+libsratom-0-0, libss2, libssh2-1, libssl3, libstdc++6, libstemmer0d, 
+libsystemd-shared, libsystemd0, libtasn1-6, libtext-glob-perl, 
+libtext-iconv-perl, libthai-data, libthai0, libtie-ixhash-perl, libtiff6, 
+libtimedate-perl, libtinfo6, libtirpc-common, libtirpc3, libtry-tiny-perl, 
+libuchardet0, libudev1, libunistring2, libunwind8, liburi-perl, libusb-1.0-0, 
+libuuid1, libvorbis0a, libvorbisenc2, libwacom-common, libwacom9, 
+libwayland-client0, libwayland-cursor0, libwayland-egl1, libwayland-server0, 
+libwebp7, libwebrtc-audio-processing1, libwireplumber-0.4-0, libwrap0, 
+libwww-perl, libwww-robotrules-perl, libx11-6, libx11-data, 
+libx11-protocol-perl, libx11-xcb1, libxau6, libxaw7, libxcb-dri2-0, 
+libxcb-dri3-0, libxcb-glx0, libxcb-icccm4, libxcb-image0, libxcb-keysyms1, 
+libxcb-present0, libxcb-randr0, libxcb-render-util0, libxcb-render0, 
+libxcb-shape0, libxcb-shm0, libxcb-sync1, libxcb-util1, libxcb-xfixes0, 
+libxcb-xinerama0, libxcb-xinput0, libxcb-xkb1, libxcb1, libxcomposite1, 
+libxcursor1, libxdamage1, libxdmcp6, libxext6, libxfixes3, libxft2, libxi6, 
+libxinerama1, libxkbcommon-x11-0, libxkbcommon0, libxkbfile1, 
+libxml-parser-perl, libxml-twig-perl, libxml-xpathengine-perl, libxml2, 
+libxmlb2, libxmu6, libxmuu1, libxpm4, libxrandr2, libxrender1, libxshmfence1, 
+libxss1, libxt6, libxtables12, libxtst6, libxv1, libxxf86dga1, libxxf86vm1, 
+libxxhash0, libyaml-0-2, libz3-4, libzstd1, locales, login, logsave, man-db, 
+mawk, media-types, mount, ncurses-base, ncurses-bin, ncurses-term, net-tools, 
+netbase, nftables, openssh-client, openssh-server, openssh-sftp-server, 
+openssl, packagekit-tools, packagekit, passwd, patch, perl-base, 
+perl-modules-5.36, perl-openssl-defaults, perl, pinentry-curses, 
+pipewire-alsa, pipewire-bin, pipewire-pulse, pipewire, polkitd, procps, 
+psmisc, publicsuffix, python3-minimal, python3.11-minimal, python3.11, 
+python3, qt5-gtk-platformtheme, qt5-gtk2-platformtheme, 
+qt5-style-plugin-cleanlooks, qt5-style-plugin-motif, 
+qt5-style-plugin-plastique, qt5-style-plugins, qttranslations5-l10n, 
+qtwayland5, readline-common, rtkit, runit-helper, sed, sensible-utils, 
+sgml-base, shared-mime-info, sudo, systemd-sysv, systemd-timesyncd, systemd, 
+sysvinit-utils, tar, tzdata, ucf, udev, unzip, usbutils, usrmerge, 
+util-linux-extra, util-linux, vim-common, vim-runtime, vim, wget, whiptail, 
+wireplumber, x11-common, x11-utils, x11-xserver-utils, xauth, xdg-user-dirs, 
+xdg-utils, xfonts-base, xfonts-encodings, xfonts-utils, xkb-data, xml-core, 
+xxd, xz-utils, zlib1g
+```
+
 :::
+
+::::
 
 ## `.profile`
 
