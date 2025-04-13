@@ -2,7 +2,7 @@
 title: "DHS Trusted Tester Certification 備忘録" # 記事のタイトル
 emoji: "🎓" # アイキャッチとして使われる絵文字（1文字だけ）
 type: "idea" # tech: 技術記事 / idea: アイデア記事
-topics: ["wcag", "a11y", "webaccessibility"] # タグ。["markdown", "rust", "aws"]のように指定する
+topics: ["wcag", "a11y", "webaccessibility", "資格"] # タグ。["markdown", "rust", "aws"]のように指定する
 published: true # 公開設定（falseにすると下書き）
 ---
 
