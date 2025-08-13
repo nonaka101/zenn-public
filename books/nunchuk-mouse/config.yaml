@@ -1,0 +1,50 @@
+title: "Arduino備忘録：コントローラをマウスとして利用する"
+summary: |-
+  本書は、下記リポジトリに関する書籍となります。
+
+  https://github.com/nonaka101/nunchuk-mouse
+  
+
+  上記は、Arduino を使って PC とコントローラー（Wii ヌンチャク）を接続、マウスとして利用することを目的としています。
+  そして本書は、製作時のメモである「何を目指して設計したか」「設計時にどういった問題が生じ、どう考え対処したか」をまとめた備忘録となっております。
+
+  私と同じような、Arduino 初心者の お役に立てれば幸いです。
+
+  注）"初心者である執筆者が、自身に理解できた範囲で噛み砕いて説明した備忘録" というスタンスからわかるように、本書は情報精度などの問題を抱えています。
+    まずは最初のチャプターである『この本について』を参照いただき、ご了承の上で閲覧いただけたらと思います。
+
+topics: ["arduino", "i2c", "電子工作"]
+published: true
+price: 0 # 有料の場合200〜5000
+toc_depth: 3 # チャプター内の目次で表示する深さ
+# 本に含めるチャプターを順番に並べましょう
+chapters:
+  - 000__about-this-book
+  # 第一章：使い方
+  - 100__how-to-use
+  - 110__overview
+  - 120__hardware-required
+  - 130__connect-device
+  - 140__upload-sketch
+  - 150__adjust-parameters
+  # 第二章：設計
+  - 200__architecture
+  - 210__nunchuk
+  - 220__mouse
+  - 230__problems-with-combining
+  - 240__switch-mode-as-solution
+  - 250__adjust-parameters
+  # 第三章：コーディング
+  - 300__coding
+  - 310__prepare-sketch
+  - 320__handshake
+  - 330__read-nunchuk
+  - 340__smooth-acceleration
+  - 350__calculate-angle
+  - 360__struct-mouse-control
+  - 370__update-mouse
+  - 380__print-debug-info
+  - 390__send-mouse-events
+  # 附録
+  - 900__code
+  - 910__assembly
