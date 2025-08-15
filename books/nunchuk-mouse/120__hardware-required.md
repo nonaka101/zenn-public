@@ -8,7 +8,7 @@ title: "📄使い方：必要となる機材等"
 
 ## 必要となる機材等
 
-![Arduino Lepnardo, ヌンチャクコントローラー, USBケーブル, ジャンプワイヤで接続している状態。画像ではこれらに加えブレッドボードに LED と抵抗を接続している](/images/books/nunchuk-mouse/prototype-01.png)
+![Arduino Leonardo, ヌンチャクコントローラー, USBケーブル, ジャンプワイヤで接続している状態。画像ではこれらに加えブレッドボードに LED と抵抗を接続している](/images/books/nunchuk-mouse/prototype-01.png)
 
 ここでは必要となる機材等について説明します。上図は開発段階の検証機で、このような簡素な構成でも動かすことができます。
 
@@ -18,7 +18,7 @@ title: "📄使い方：必要となる機材等"
 
 IDE は [公式ホームページ](https://www.arduino.cc/en/software/)から取得することが可能です。導入に関しての詳細は、公式サイトを参照ください。
 
-[^1]: IDE（Integrated Development Environmen）：統合開発環境、必要となる様々な機能をまとめた開発環境のこと
+[^1]: IDE（Integrated Development Environment）：統合開発環境、必要となる様々な機能をまとめた開発環境のこと
 
 ### Arduinoなどの開発ボード
 
