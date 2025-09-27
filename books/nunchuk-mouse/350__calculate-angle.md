@@ -53,15 +53,15 @@ $$
 そして、X, Y, Z の各軸の傾き角の計算は下記になります。
 
 $$
-\theta_x = \tan^{-1}\times\frac{x}{\sqrt{y^2 + z^2}}
+\theta_x = \tan^{-1}\left(\frac{x}{\sqrt{y^2 + z^2}}\right)
 $$
 
 $$
-\theta_y = \tan^{-1}\times\frac{y}{\sqrt{x^2 + z^2}}
+\theta_y = \tan^{-1}\left(\frac{y}{\sqrt{x^2 + z^2}}\right)
 $$
 
 $$
-\theta_z = \tan^{-1}\times\frac{z}{\sqrt{x^2 + y^2}}
+\theta_z = \tan^{-1}\left(\frac{z}{\sqrt{x^2 + y^2}}\right)
 $$
 
 コードにすると、下記のようになります。
