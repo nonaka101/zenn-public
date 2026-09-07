@@ -13,7 +13,7 @@ summary: |-
   Copyright © 2026 nonaka101
 
 topics: ["powershell", "exchangeonline", "activedirectory", "windowsserver", "teams"]
-published: false
+published: true
 price: 0 # 有料の場合200〜5000
 toc_depth: 3 # チャプター内の目次で表示する深さ
 # 本に含めるチャプターを順番に並べましょう
