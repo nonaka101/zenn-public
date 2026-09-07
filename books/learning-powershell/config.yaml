@@ -1,0 +1,61 @@
+title: "情報システム部門向け 入門 PowerShell：基本から ActiveDirectory, Microsoft365 の管理まで"
+summary: |-
+  本書は、PowerShell を学習した際のメモを書籍として書き起こしたものです。
+  
+  企業（組織）の情報システム部門で働いている方に向け、自身の経験を役立ててもらえたらと思い作成いたしました。
+
+  手にとっていただけた方には、下記事項を記載した『🔰この本について』を ご一読いただければ幸いです。
+  
+  1. 本書に関する概要
+  2. 閲覧時の注意事項
+  3. ライセンスについて
+
+  Copyright © 2026 nonaka101
+
+topics: ["powershell", "exchangeonline", "activedirectory", "windowsserver", "teams"]
+published: false
+price: 0 # 有料の場合200〜5000
+toc_depth: 3 # チャプター内の目次で表示する深さ
+# 本に含めるチャプターを順番に並べましょう
+chapters:
+  # 序章
+  - 0000__about-this-book
+  - 0010__about-powershell
+  - 0020__basics-of-ise
+  - 0999__coffee-break-01
+  # 第 1 章
+  - 1000__about-this-part
+  - 1010__basic-syntax-1
+  - 1020__basic-syntax-2
+  - 1030__array
+  - 1040__commandlet
+  - 1050__object-1
+  - 1060__object-2
+  - 1070__function
+  - 1080__try-catch
+  - 1999__coffee-break-02
+  # 第 2 章
+  - 2000__about-this-part
+  - 2010__util_decoration-message
+  - 2020__util_read-yes-no
+  - 2030__util_normalize-inputpath
+  - 2040__util_folderpicker
+  - 2050__util_other-dialogs-1
+  - 2060__util_other-dialogs-2
+  - 2070__util_directory-searcher-1
+  - 2080__util_directory-searcher-2
+  - 2090__util_explorer
+  - 2100__util_split-keyword
+  - 2110__util_test-mail-address
+  - 2120__util_get-script-path
+  - 2130__util_random-number-generator
+  - 2140__util_generate-password
+  - 2999__coffee-break-03
+  # 第 3 章
+  - 3000__about-this-part
+  - 3100__acl_basis
+  - 3200__ad_basis
+  - 3300__exchange_basis
+  - 3400__teams_basis
+  - 3999__coffee-break-04
+  # 附則など
